@@ -1,0 +1,125 @@
+<html>
+<head>
+  <title> Number Base Converter App by Prachi </title>
+  <style>
+        * {
+      text-align: center;
+      font-size: 26px;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #fff8dc;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .nav {
+      background-color: #4b2e2e;
+      padding: 10px 0;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      margin: 40px;
+      font-weight: bold;
+    }
+
+    h1 {
+      margin: 30px 0;
+      font-size: 36px;
+      color: #4b2e2e;
+    }
+
+    h2 {
+      border: 3px groove #a1887f;
+      width: 70%;
+      margin: 20px auto;
+      border-radius: 20px;
+      padding: 25px;
+      background-color: #fefae0;
+      color: #5d4037;
+    }
+
+    p {
+      margin: 10px 0;
+    }
+</style>
+</head>
+
+<body>
+<div class="nav">
+<a href="index.html">Home</a>
+<a href="aboutus.html">Additional Information</a>
+</div>
+
+  <h1> Number Base Converter App </h1>
+
+  <form>
+    <label>Decimal</label>
+    <input type="number" id="decimal" placeholder="Enter Decimal">
+<br/><br/>
+    <label>Binary</label>
+    <input type="text" id="binary" placeholder="Enter Binary">
+<br/><br/>
+
+    <label>Octal</label>
+    <input type="text" id="octal" placeholder="Enter Octal">
+<br/><br/>
+
+    <label>Hexadecimal</label>
+    <input type="text" id="hex" placeholder="Enter Hexadecimal">
+<br/><br/>
+
+  </form>
+
+  <script>
+    let dec = document.getElementById("decimal");
+    let bin = document.getElementById("binary");
+    let oct = document.getElementById("octal");
+    let hex = document.getElementById("hex");
+
+    dec.addEventListener("input", function () {
+      let d = parseInt(dec.value);
+      if (!isNaN(d)) {
+        bin.value = d.toString(2);
+        oct.value = d.toString(8);
+        hex.value = d.toString(16).toUpperCase();
+      } else {
+        bin.value = oct.value = hex.value = "";
+      }
+    });
+
+    bin.addEventListener("input", function () {
+      let b = bin.value;
+      if (/^[01]+$/.test(b)) {
+        let d = parseInt(b, 2);
+        dec.value = d;
+        oct.value = d.toString(8);
+        hex.value = d.toString(16).toUpperCase();
+      }
+    });
+
+    oct.addEventListener("input", function () {
+      let o = oct.value;
+      if (/^[0-7]+$/.test(o)) {
+        let d = parseInt(o, 8);
+        dec.value = d;
+        bin.value = d.toString(2);
+        hex.value = d.toString(16).toUpperCase();
+      }
+    });
+
+    hex.addEventListener("input", function () {
+      let h = hex.value;
+      if (/^[0-9a-fA-F]+$/.test(h)) {
+        let d = parseInt(h, 16);
+        dec.value = d;
+        bin.value = d.toString(2);
+        oct.value = d.toString(8);
+      }
+    });
+  </script>
+</body>
+</html>
